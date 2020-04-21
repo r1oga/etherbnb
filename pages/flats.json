@@ -1,0 +1,150 @@
+[
+  {
+    "id": "1",
+    "picture": "/img/flats/11.jpg",
+    "entirePlace": false,
+    "type": "Private room in apartment",
+    "town": "Paris",
+    "title": "Room in an Industrial Chic Loft Near Le Marais.",
+    "nightPrice": 50,
+    "rating": "4.98",
+    "reviewsCount": "49",
+    "superhost": true,
+    "description": "Explore on foot from a private room in this magnificent loft apartment. A charming cobblestone street and original architecture combine with contemporary fixtures and vibrant furnishings for an unmistakable slice of the coolest corner of Paris.",
+    "guests": 2,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "beds": 1,
+    "amenities": {
+      "kitchen": true,
+      "washer": true,
+      "dryer": true,
+      "wifi": true,
+      "tv": true,
+      "bathroomEssentials": true,
+      "bedroomComforts": true,
+      "coffeeMaker": true,
+      "hairDryer": true,
+      "iron": true,
+      "fireExtinguisher": true,
+      "smokeDectetor": true,
+      "carbonMonoxideDectector": true,
+      "freeParking": false,
+      "airConditioning": false
+    },
+    "reviews": [
+      {
+        "user": "Anjli",
+        "avatar": "https://a0.muscache.com/im/pictures/user/893e576e-2464-4ee3-baf3-2a4d53fc85ce.jpg?aki_policy=profile_x_medium",
+        "date": "a month ago",
+        "comment": "Marielle is an excellent host with a supercool space — a two-floor loft in a converted warehouse in the 11th arrondissement, a hub for new restaurants. (Our favourite spot for lunch in the neighbourhood is Chez Aline; Mokonuts is also really good.) We loved Marielle’s sense of colour and design, her space is full of art and eclectic flea market finds — very Parisian, very chic! Parisian buildings tend to have a lot of access doors and codes, but we had no trouble getting in and out of the building. Our space in Marielle’s loft was large, bright, warm, cosy, and inviting. We found the ensuite bathroom and closets very spacious. There were lots of clean towels, soap, and toiletries like toothbrushes. Lastly, Marielle was friendly and helpful, neither too available or unavailable. The only thing we would change is having more time in our schedule to chat with her! We hope to stay with her next time we visit Paris. :-)"
+      },
+      {
+        "user": "Simin",
+        "avatar": "https://a0.muscache.com/im/pictures/user/830c29ac-e92e-4e6d-bb2f-b1a5bd8f1c58.jpg?aki_policy=profile_x_medium",
+        "date": "2 months ago",
+        "comment": "Marielle's apartment brings me the most authentic Parisian experience for my Paris trip! The classic and trendy apartment is decorated with many posters, books, and Jazz music! The district is really nice, vibrant, convenience! Many bars and cafe around and you don't have to worry about the noise! Marielle is a super nice and welcoming host, she is stylish, independent, and really easy-going!! She highlights my Paris trip! Merci beaucoup Marielle!!!"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "picture": "/img/flats/21.jpg",
+    "type": "Entire condominium",
+    "entirePlace": true,
+    "town": "Paris",
+    "superhost": true,
+    "title": "Loft Duplex design dans une ancienne imprimerie. Paris proche Pte de Versailles.",
+    "nightPrice": 55,
+    "rating": "4.69",
+    "reviewsCount": "41",
+    "description": "Prélassez-vous dans la baignoire de ce loft à l'esprit moderne et épuré. Rénové par un architecte en décembre 2018, décliné en noir et blanc avec des touches végétales, il possède une cuisine entièrement équipée pour vos moments gourmands.",
+    "guests": 3,
+    "bedrooms": 1,
+    "bathrooms": 2,
+    "beds": 2,
+    "amenities": {
+      "selfCheckIn": true,
+      "heating": true,
+      "kitchen": true,
+      "dishWasher": true,
+      "dryer": true,
+      "wifi": true,
+      "tv": true,
+      "bathroomEssentials": true,
+      "bedroomComforts": true,
+      "coffeeMaker": true,
+      "hairDryer": true,
+      "iron": true,
+      "fireExtinguisher": false,
+      "smokeDectetor": true,
+      "carbonMonoxideDectector": true,
+      "freeParking": false,
+      "airConditioning": false
+    },
+    "reviews": [
+      {
+        "user": "Salma",
+        "avatar": "https://a0.muscache.com/im/pictures/user/965408ba-1aa7-44f7-8d05-e233581f6e50.jpg?aki_policy=profile_x_medium",
+        "date": "11 days ago",
+        "comment": "When we booked for Law's place, we were expecting a nice apartment for our relaxing time off in Paris. Although the apartment was very small, it was lovely, and so was the host, being helpful any time we needed help, and promptly so. However, the level of noise from the construction right in front of us was extremely brutal and woke us up daily starting 6AM onwards during our vacation. Law had not told us about it nor warned us. Moreover, through the thin walls we could hear our neighbors conversations. The place was lovely and so was the host. But the lack of warning regarding the noise honestly took a toll on our vacation & downtime; we could not sleep in, the noise was right in our ears. The apartment is also 30-40 minutes away by car from any main attraction / area in Paris, but the area itself has a metro station, coffee shops, and grocery shops. Everything was great except that you can hear everything going on inside & outside the apartment, wherever you're located inside the place."
+      },
+      {
+        "user": "Gerad",
+        "avatar": "https://a0.muscache.com/im/pictures/user/3396598e-d189-4459-9ab4-b27ca32729be.jpg?aki_policy=profile_x_medium",
+        "date": "a month ago",
+        "comment": "Very stylish, modern and clean apartment. It was walking distance to Porte de Versailles, so it was very convenient for us. Location is also very near Main Street with restaurants and convenient store. Highly recommend this apartment!!"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "picture": "/img/flats/31.jpg",
+    "type": "Private room in house-boat",
+    "entirePlace": false,
+    "town": "Paris",
+    "title": "Chambre romantique dans une péniche près de Paris.",
+    "nightPrice": 60,
+    "rating": "4.95",
+    "reviewsCount": "75",
+    "superhost": true,
+    "guests": 2,
+    "description": "Embarquez pour une expérience unique à bord de cette péniche, située dans un paisible écrin de verdure au Sud de Paris. Installez-vous dans votre cabine indépendante équipée d'une salle de bain et profitez du salon extérieur couvert en toute saison.",
+    "bedrooms": 1,
+    "beds": 1,
+    "bathrooms": 1,
+    "amenities": {
+      "paidParking": true,
+      "heating": true,
+      "kitchen": false,
+      "washer": true,
+      "dryer": true,
+      "wifi": true,
+      "tv": true,
+      "bathroomEssentials": true,
+      "bedroomComforts": true,
+      "coffeeMaker": true,
+      "hairDryer": true,
+      "iron": true,
+      "fireExtinguisher": true,
+      "smokeDectetor": true,
+      "carbonMonoxideDectector": true,
+      "freeParking": false,
+      "airConditioning": false
+    },
+    "reviews": [
+      {
+        "user": "Michaela",
+        "avatar": "https://a0.muscache.com/im/users/11736195/profile_pic/1391030547/original.jpg?aki_policy=profile_x_medium",
+        "date": "3 years ago",
+        "comment": "Laetitia and Marc are very nice and welcoming and the house boat was just awesome! Thanks for the possibility of staying on such a beautiful house boat and the great dinner on my first day. Much better than what you can buy in Paris."
+      },
+      {
+        "user": "Denny",
+        "avatar": "https://a0.muscache.com/im/users/6229115/profile_pic/1412040950/original.jpg?aki_policy=profile_x_medium",
+        "date": "2 months ago",
+        "comment": "A very large, modern, stylish houseboat. Great, immersive views of the Seine. The reflections of the lanterns and light on the water at night was hypnotically beautiful and calming. The outside room did not feel like a living room. It was small and had many things belonging to the host. There wasn't an armchair to comfortably sit in and read. The location is some ways from central Paris, but the suburb is close to the Bois de Boulogne, Fondation Louis Vuitton. There is not much on the Ile de la Jatte. Buses are handy and as convenient if not more than the Metro, 15 minutes away on foot. I think it is important to know beforehand that there is moderate-to-heavy smoking and that the odor lingers, even at the other end of the boat. It would be helpful to know where the light switch over the kitchen counter is. The hosts offered use of the kitchen (microwave, coffee-maker, etc.). The bedroom has an Apple TV, which was very nice, although it wasn't that intuitive to use. The neighborhood, with blocks of concrete modern high story buildings mixed in with lovely Beaux Arts architecture, is very safe, comparable to Brookline or Newton vis-a-vis Boston. Thus the neighborhood did feel not as claustrophobic or jam packed with people as Paris proper. Boulevard de General Leclerc is a major thoroughfare, so though on the Seine, you can hear the roar of it as well as the sounds of people going about their business on the island. There are a couple of nice restaurants within a pleasant 5-10 minute walking distance there. La Boulangerie Lepareur has wonderful viennoiseries and bread, but the Carrefour Express next to it has only the bare minimum. Farther out--and you would need a map--is the better stocked Franprix. Avenue Charles De Gaulle is a very wide, not very beautiful avenue but the side streets have much turn-of-the-century architectural charm."
+      }
+    ]
+  }
+]

@@ -1,9 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
 
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`
+import flats from './flats.json'
+import Flat from '../components/flat'
 
-export default () => <Title>My page</Title>
+export default () => (
+  <div>
+    <h2>Places to stay at</h2>
+    <div className='flats'>
+      {flats.map((flat, index) => <Flat key={index} {...flat} />)}
+    </div>
+  </div>
+)
