@@ -1,4 +1,8 @@
 {
   "presets": ["next/babel"],
-  "plugins": [["styled-components", { "ssr": true }]]
+  "plugins": [
+    ["babel-plugin-styled-components", {  "ssr": true, "displayName": true, "preprocess": false, "pure": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "inline-react-svg"
+  ]
 }
