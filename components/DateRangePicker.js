@@ -41,7 +41,7 @@ export default ({ datesChanged }) => {
                       newEndDate = tomorrow(day)
                       setEndDate(newEndDate)
                     }
-                    // datesChanged(day, newEndDate)
+                    datesChanged(day, newEndDate)
                   }}
                   placeholder={`${dateFnsFormat(new Date(), format)}`}
                 />
@@ -62,7 +62,7 @@ export default ({ datesChanged }) => {
                   }}
                   onDayChange={day => {
                     setEndDate(day)
-                    // datesChanged(startDate, day)
+                    datesChanged(startDate, day)
                   }}
                   placeholder={`${dateFnsFormat(endDate, format)}`}
                 />
