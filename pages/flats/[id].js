@@ -18,7 +18,11 @@ const Flat = ({ flat }) => (
       </Box>
       <Box mx={[0, 3]} width={[1, 1 / 2, 2 / 5]}>
         <h2>Add dates for prices</h2>
-        <DateRangePicker />
+        <DateRangePicker datesChanged={(startDate, endDate) => {
+          // console.log(startDate)
+          // console.log(endDate)
+        }}
+        />
       </Box>
     </Flex>
   </Layout>
