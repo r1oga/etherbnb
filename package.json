@@ -12,6 +12,7 @@
     "lodash": "^4.17.15",
     "next": "latest",
     "react": "^16.8.0",
+    "react-day-picker": "^7.4.8",
     "react-dom": "^16.8.0",
     "rimble-ui": "^0.14.0",
     "styled-components": "^5.0.0"
