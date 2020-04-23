@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Flex, Box, Heading, Text, Card, Button } from 'rimble-ui'
 import { useState } from 'react'
 import { differenceInCalendarDays } from 'date-fns'
+import { useStoreActions } from 'easy-peasy'
 
 import flats from '../flats.json'
 import Layout from '../../components/Layout'
@@ -12,6 +13,8 @@ import DateRangePicker from '../../components/DateRangePicker'
 const Flat = ({ flat }) => {
   const [dateChosen, setDateChosen] = useState(false)
   const [numberNights, setNumberNights] = useState(0)
+
+  const openLogin = useStoreActions(actions => actions.modals.openLogin)
 
   return (
     <Layout>
@@ -46,7 +49,9 @@ const Flat = ({ flat }) => {
                     <Text>{(numberNights * flat.nightPrice).toFixed(2)} €</Text>
                   </Box>
                 </Flex>
-
+                <Button mt={2} width={1} onClick={openLogin}>
+                    Book
+                </Button>
               </Card>
             )
           }
