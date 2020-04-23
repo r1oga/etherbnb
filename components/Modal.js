@@ -1,27 +1,36 @@
 import { Box, Modal, Button, Card } from 'rimble-ui'
 import { useState } from 'react'
+import { useStoreState, useStoreActions } from 'easy-peasy'
 
 import Login from './Login'
 import Registration from './Registration'
 
 export default props => {
-  const [isOpen, setIsOpen] = useState(true)
-  const [showLogin, setShowLogin] = useState(true)
-  const [showRegistration, setShowRegistration] = useState(false)
+  const showModal = useStoreState(state => state.modals.showModal)
+  const showLogin = useStoreState(state => state.modals.showLogin)
+  const showRegistration = useStoreState(state => state.modals.showRegistration)
 
-  const closeModal = e => {
-    e.preventDefault()
-    setIsOpen(false)
-  }
+  const openLogin = useStoreActions(actions => actions.modals.openLogin)
+  const openRegistration = useStoreActions(actions => actions.modals.openRegistration)
+  const closeModal = useStoreActions(actions => actions.modals.closeModal)
 
-  const openModal = e => {
-    e.preventDefault()
-    setIsOpen(true)
-  }
+  // const [showModal, setShowModal] = useState(false)
+  // const [showLogin, setShowLogin] = useState(false)
+  // const [showRegistration, setShowRegistration] = useState(false)
+
+  // const closeModal = e => {
+  //   e.preventDefault()
+  //   setShowModal(false)
+  // }
+  //
+  // const openModal = e => {
+  //   e.preventDefault()
+  //   setShowModal(true)
+  // }
 
   return (
     <>
-      <Modal isOpen={isOpen}>
+      <Modal isOpen={showModal}>
         <Card width='420px' p={0}>
           <Button.Text
             icononly
@@ -35,16 +44,8 @@ export default props => {
             onClick={closeModal}
           />
           <Box p={4} mb={3}>
-            {showLogin && <Login toggle={() => {
-              setShowLogin(false)
-              setShowRegistration(true)
-            }}
-                          />}
-            {showRegistration && <Registration toggle={() => {
-              setShowLogin(true)
-              setShowRegistration(false)
-            }}
-            />}
+            {showLogin && <Login toggle={openRegistration} />}
+            {showRegistration && <Registration toggle={openLogin} />}
           </Box>
         </Card>
       </Modal>

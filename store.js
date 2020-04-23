@@ -3,8 +3,22 @@ import { createStore, action } from 'easy-peasy'
 import { tomorrow } from './lib/dates'
 
 export default createStore({
-  dates: {
-    startDate: new Date(),
-    endDate: tomorrow(new Date())
+  modals: {
+    showModal: false,
+    showLogin: false,
+    showRegistration: false,
+    closeModal: action(state => {
+      state.showModal = false
+    }),
+    openLogin: action(state => {
+      state.showModal = true
+      state.showLogin = true
+      state.showRegistration = false
+    }),
+    openRegistration: action(state => {
+      state.showModal = true
+      state.showLogin = false
+      state.showRegistration = true
+    })
   }
 })

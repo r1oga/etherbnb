@@ -1,29 +1,35 @@
 import Link from 'next/link'
+import { useStoreActions } from 'easy-peasy'
 
-export default () => (
-  <div className='nav-container'>
-    <Link href='/'>
-      <a>
-        <img src='/img/favicon.ico' alt='rbnb logo' />
-      </a>
-    </Link>
+export default () => {
+  const openLogin = useStoreActions(actions => actions.modals.openLogin)
+  const openRegistration =
+  useStoreActions(actions => actions.modals.openRegistration)
 
-    <nav>
-      <ul>
-        <li>
-          <Link href='/register'>
-            <a>Sign up</a>
-          </Link>
-        </li>
-        <li>
-          <Link href='/login'>
-            <a>Log in</a>
-          </Link>
-        </li>
-      </ul>
-    </nav>
+  return (
+    <div className='nav-container'>
+      <Link href='/'>
+        <a>
+          <img src='/img/favicon.ico' alt='rbnb logo' />
+        </a>
+      </Link>
 
-    <style jsx>{`
+      <nav>
+        <ul>
+          <li>
+            <Link href='#'>
+              <a href='#' onClick={openRegistration}>Register</a>
+            </Link>
+          </li>
+          <li>
+            <Link href='#'>
+              <a href='#' onClick={openLogin}>Log in</a>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+
+      <style jsx>{`
      ul {
        margin: 0;
        padding: 0;
@@ -58,6 +64,7 @@ export default () => (
        float: right;
      }
    `}
-    </style>
-  </div>
-)
+      </style>
+    </div>
+  )
+}

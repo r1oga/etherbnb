@@ -1,8 +1,13 @@
 import { Form, Button, Heading, Box, Text } from 'rimble-ui'
 
 export default ({ toggle }) => {
+  const onSubmit = event => {
+    alert('Log in')
+    event.preventDefault()
+  }
+
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <Heading.h2>Register</Heading.h2>
       <Form.Field label='Email' width={1}>
         <Form.Input
