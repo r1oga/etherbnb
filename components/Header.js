@@ -1,11 +1,42 @@
 import Link from 'next/link'
 import { useStoreActions, useStoreState } from 'easy-peasy'
+import axios from 'axios'
 
 export default () => {
   const openLogin = useStoreActions(actions => actions.modals.openLogin)
   const openRegistration =
   useStoreActions(actions => actions.modals.openRegistration)
   const user = useStoreState(state => state.user.user)
+  const setUser = useStoreActions(actions => actions.user.setUser)
+
+  const loggedHtml = (
+    <>
+      <li className='username'>{user}</li>
+      <li>
+        <a
+          href='#'
+          onClick={async () => {
+            await axios.post('/api/auth/logout')
+            setUser(null)
+          }}
+        >Logout
+        </a>
+      </li>
+    </>
+  )
+  const notLoggedHtml = (
+    <>
+      <li>
+        <Link href='#'>
+          <a href='#' onClick={openRegistration}>Register</a>
+        </Link>
+      </li>
+      <li>
+        <Link href='#'>
+          <a href='#' onClick={openLogin}>Log in</a>
+        </Link>
+      </li>
+    </>)
 
   return (
     <div className='nav-container'>
@@ -17,20 +48,7 @@ export default () => {
 
       <nav>
         <ul>
-          {user ? (<li className='username'>{user}</li>) : (
-            <>
-              <li>
-                <Link href='#'>
-                  <a href='#' onClick={openRegistration}>Register</a>
-                </Link>
-              </li>
-              <li>
-                <Link href='#'>
-                  <a href='#' onClick={openLogin}>Log in</a>
-                </Link>
-              </li>
-            </>
-          )}
+          {user ? loggedHtml : notLoggedHtml}
         </ul>
       </nav>
 

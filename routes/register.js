@@ -1,6 +1,6 @@
-const User = require('../../model.js').User
+const User = require('../model.js').User
 
-const register = async (req, res) => {
+module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).end() // METHOD not allowed
     return
@@ -35,5 +35,3 @@ const register = async (req, res) => {
     res.end(JSON.stringify({ status: 'error', message }))
   }
 }
-
-module.exports = register
