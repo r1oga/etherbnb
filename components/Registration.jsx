@@ -8,12 +8,20 @@ export default ({ toggle }) => {
   const [passwordRepeat, setPasswordRepeat] = useState('')
 
   const onSubmit = async event => {
-    const response = await axios.post(
-      '/api/auth/register',
-      { email, password, passwordRepeat }
-    )
-    console.log(response)
+    try {
+      const response = await axios.post(
+        '/api/auth/register',
+        { email, password, passwordRepeat }
+      )
+      if (response.data.status === 'error') {
+        alert(response.data.message)
+        return
+      }
+    } catch (error) {
+      alert(error.response.data.message)
+    }
   }
+
   return (
     <Form onSubmit={onSubmit}>
       <Heading.h2>Register</Heading.h2>

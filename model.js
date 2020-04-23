@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt')
 
 const Sequelize = require('sequelize')
-const { Model, DataTypes } = Sequelize
+const Model = Sequelize.Model
+const DataTypes = Sequelize.DataTypes
 
 const Database = require('./db')
 const { user, password, host, database } = Database
@@ -37,7 +38,9 @@ User.init({
   }
 })
 
-User.prototype.isPasswordValid = async (password) => bcrypt.compare(password, this.password)
+User.prototype.isPasswordValid = async (password) => {
+  return bcrypt.compare(password, this.password)
+}
 
 exports.User = User
 exports.sequelize = sequelize

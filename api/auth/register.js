@@ -1,6 +1,6 @@
-import { User } from '../../../model.js'
+const User = require('../../model.js').User
 
-export default async (req, res) => {
+const register = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).end() // METHOD not allowed
     return
@@ -17,7 +17,15 @@ export default async (req, res) => {
   }
   try {
     const user = await User.create({ email, password })
-    res.end(JSON.stringify({ status: 'success', message: 'User added' }))
+
+    req.login(user, err => {
+      if (err) {
+        res.statusCode = 500
+        res.end(JSON.stringify({ status: 'error', message: err }))
+        return
+      }
+      return res.end(JSON.stringify({ status: 'success', message: 'User logged in' }))
+    })
   } catch (error) {
     res.statusCode = 500
     let message = 'Error'
@@ -27,3 +35,5 @@ export default async (req, res) => {
     res.end(JSON.stringify({ status: 'error', message }))
   }
 }
+
+module.exports = register
