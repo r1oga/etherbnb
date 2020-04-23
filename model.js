@@ -1,4 +1,6 @@
 import { Sequelize, Model, DataTypes } from 'sequelize'
+import bcrypt from 'bcrypt'
+
 import { user, password, host, database } from './db'
 
 const sequelize = new Sequelize(database, user, password, {
@@ -18,4 +20,18 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   }
-}, { sequelize, modelName: 'user', timestamps: false })
+},
+{
+  sequelize,
+  modelName: 'user',
+  timestamps: false,
+  hooks: {
+    beforeCreate: async user => {
+      const saltRounds = 10
+      const salt = await bcrypt.genSalt(saltRounds)
+      user.password = await bcrypt.hash(user.password, salt)
+    }
+  }
+})
+
+User.prototype.isPasswordValid = async (password) => bcrypt.compare(password, this.password)
