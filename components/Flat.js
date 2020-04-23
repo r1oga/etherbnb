@@ -33,6 +33,7 @@ const Flat = ({
         <Image
           width={1}
           src={picture}
+          borderRadius={8}
           alt='random image from unsplash.com'
         />
 

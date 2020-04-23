@@ -19,7 +19,7 @@ export default ({ datesChanged }) => {
         p={0}
         borderRadius={8}
       >
-        <Heading.h2 p={3}>Select dates</Heading.h2>
+        <Heading.h2 p='32px'>Select dates</Heading.h2>
         <Table border='none' boxShadow='none'>
           <tbody>
             <tr>

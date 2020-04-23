@@ -30,7 +30,7 @@ const Flat = ({ flat }) => {
           />
           {
             dateChosen && (
-              <Card>
+              <Card mt={3} borderRadius={8}>
                 <Flex flexWrap='wrap' flexDirection='row'>
                   <Heading.h2 flex='1 100%'>Costs</Heading.h2>
                   <Box flex='1 50%'>

@@ -5,6 +5,7 @@ import { StoreProvider } from 'easy-peasy'
 
 import store from '../store'
 import 'react-day-picker/lib/style.css'
+import '../main.css'
 
 export default class MyApp extends App {
   render () {
