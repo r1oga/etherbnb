@@ -4,8 +4,8 @@ import { Flex, Box, Heading, Text, Card, Button } from 'rimble-ui'
 import { useState } from 'react'
 import { differenceInCalendarDays } from 'date-fns'
 import { useStoreActions } from 'easy-peasy'
+import fetch from 'isomorphic-unfetch'
 
-import flats from '../flats.json'
 import Layout from '../../components/Layout'
 import FlatComponent from '../../components/Flat'
 import DateRangePicker from '../../components/DateRangePicker'
@@ -61,8 +61,10 @@ const Flat = ({ flat }) => {
   )
 }
 
-Flat.getInitialProps = ({ query: { id } }) => {
-  return { flat: _.filter(flats, ['id', id])[0] }
+Flat.getInitialProps = async ({ query: { id } }) => {
+  const res = await fetch(`http://localhost:3000/api/flats/${id}`)
+  const flat = res.json()
+  return { flat }
 }
 
 export default Flat

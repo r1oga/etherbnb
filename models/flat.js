@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
 
-class House extends Sequelize.Model {}
+class Flat extends Sequelize.Model {}
 
-House.init(
+Flat.init(
   {
     id: { type: Sequelize.DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     host: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
@@ -27,9 +27,9 @@ House.init(
   },
   {
     sequelize,
-    modelName: 'house',
+    modelName: 'flat',
     timestamps: false
   }
 )
 
-module.exports = House
+module.exports = Flat

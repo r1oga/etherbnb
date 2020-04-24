@@ -7,7 +7,7 @@ const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 
 const User = require('./models/user')
-const House = require('./models/house')
+const Flat = require('./models/flat')
 const Review = require('./models/review')
 const sequelize = require('./db')
 
@@ -18,7 +18,7 @@ const sessionStore = new SequelizeStore({ db: sequelize })
 
 // keep DB in sync in case with change the models
 User.sync({ alter: true })
-House.sync({ alter: true })
+Flat.sync({ alter: true })
 Review.sync({ alter: true })
 
 const passport = require('passport')

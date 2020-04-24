@@ -1,6 +1,6 @@
 const register = require('./register')
 const login = require('./login')
-const House = require('../models/house')
+const Flat = require('../models/flat')
 const Review = require('../models/review')
 
 const ENDPOINT = '/api/'
@@ -17,11 +17,23 @@ module.exports = (server, passport) => {
 
   server.post(`${ENDPOINT}auth/login`, login(passport))
 
-  server.get(`${ENDPOINT}houses`, (req, res) => {
-    House.findAndCountAll().then(result => {
-      const houses = result.rows.map(house => house.dataValues)
+  server.get(`${ENDPOINT}flats`, (req, res) => {
+    Flat.findAndCountAll().then(result => {
+      const flats = result.rows.map(flat => flat.dataValues)
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify(houses))
+      res.end(JSON.stringify(flats))
+    })
+  })
+
+  server.get(`${ENDPOINT}flats/:id`, ({ params: { id } }, res) => {
+    Flat.findByPk(id).then(flat => {
+      if (flat) {
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify(flat.dataValues))
+      } else {
+        res.writeHead(404, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ message: 'Not found' }))
+      }
     })
   })
 }

@@ -15,7 +15,7 @@ const Index = ({ flats }) => (
 )
 
 Index.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/houses')
+  const res = await fetch('http://localhost:3000/api/flats')
   const flats = await res.json()
   return { flats }
 }
