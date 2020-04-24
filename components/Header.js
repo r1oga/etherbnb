@@ -10,7 +10,6 @@ export default () => {
   const user = useStoreState(state => state.user.user)
   const setUser = useStoreActions(actions => actions.user.setUser)
 
-  console.log(user)
   return (
     <Flex justifyContent='flex-end' alignItems='center'>
       <Flex flexGrow={4} alignItems='center'>

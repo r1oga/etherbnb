@@ -14,20 +14,6 @@ export default props => {
   const openRegistration = useStoreActions(actions => actions.modals.openRegistration)
   const closeModal = useStoreActions(actions => actions.modals.closeModal)
 
-  // const [showModal, setShowModal] = useState(false)
-  // const [showLogin, setShowLogin] = useState(false)
-  // const [showRegistration, setShowRegistration] = useState(false)
-
-  // const closeModal = e => {
-  //   e.preventDefault()
-  //   setShowModal(false)
-  // }
-  //
-  // const openModal = e => {
-  //   e.preventDefault()
-  //   setShowModal(true)
-  // }
-
   return (
     <>
       <Modal isOpen={showModal}>

@@ -2,7 +2,7 @@ import { Form, Box, Button, Heading, Text } from 'rimble-ui'
 
 export default ({ toggle }) => {
   const onSubmit = event => {
-    alert('Log in')
+    alert('Attempt Log in (function not implemented yet)')
     event.preventDefault()
   }
 

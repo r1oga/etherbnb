@@ -8,10 +8,9 @@ import 'react-day-picker/lib/style.css'
 import '../main.css'
 
 function MyApp ({ Component, pageProps, user }) {
+  // const setUser = useStoreActions(actions => actions.user.setUser)
   // check if user prop is set, set it to store by calling the setUser action
-  if (user) {
-    store.getActions().user.setUser(user)
-  }
+  if (user) { store.getActions().user.setUser(user) }
 
   return (
     <StoreProvider store={store}>

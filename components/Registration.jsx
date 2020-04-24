@@ -1,22 +1,25 @@
 import { Form, Button, Heading, Box, Text } from 'rimble-ui'
 import { useState } from 'react'
 import axios from 'axios'
+import { useStoreActions } from 'easy-peasy'
 
 export default ({ toggle }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordRepeat, setPasswordRepeat] = useState('')
+  const setUser = useStoreActions(actions => actions.user.setUser)
+  const closeModal = useStoreActions(actions => actions.modals.closeModal)
 
   const onSubmit = async event => {
+    event.preventDefault()
     try {
-      const response = await axios.post(
-        '/api/auth/register',
-        { email, password, passwordRepeat }
-      )
+      const response = await axios.post('/api/auth/register', { email, password, passwordRepeat })
       if (response.data.status === 'error') {
         alert(response.data.message)
         return
       }
+      setUser(email)
+      closeModal()
     } catch (error) {
       alert(error.response.data.message)
     }

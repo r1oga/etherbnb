@@ -103,6 +103,6 @@ nextApp.prepare().then(() => {
 
   server.listen(port, err => {
     if (err) throw err
-    console.log(`> Ready on localhost:${port}`)
+    console.log(`> Ready on http://localhost:${port}`)
   })
 })
