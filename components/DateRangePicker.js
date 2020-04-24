@@ -14,13 +14,13 @@ export default ({ datesChanged }) => {
   return (
     <>
       <Card
-        width='auto' maxWidth='800px'
+        width='auto' maxWidth='700px'
         mx='auto'
         p={0}
         borderRadius={8}
       >
-        <Heading.h2 p='32px'>Select dates</Heading.h2>
-        <Table border='none' boxShadow='none'>
+        <Heading.h2 px='32px' my={['10px', '20px', '30px']}>Select dates</Heading.h2>
+        <Table boxShadow='none' border='none'>
           <tbody>
             <tr>
               <td>From:</td>
@@ -71,26 +71,6 @@ export default ({ datesChanged }) => {
           </tbody>
         </Table>
       </Card>
-      <style jsx>{`
-        tbody {
-          border: none!important;
-        }
-        tr {
-          border: none!important;
-          padding: 1em;
-        }
-
-        td {
-          padding: 1em;
-          border: none!important;
-        }
-
-        .DayPickerInput {
-          text-align: 'center';
-          vertical-align: 'center';
-        }
-        `}
-      </style>
     </>
   )
 }

@@ -1,3 +1,14 @@
 body {
   font-family: Source Sans Pro, athelas, georgia, sans-serif;
 }
+
+tbody {
+  border: none !important;
+}
+tr {
+  border: none !important;
+}
+
+td {
+  border: none !important;
+}

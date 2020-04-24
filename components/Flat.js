@@ -1,13 +1,13 @@
 import Link from 'next/link'
-
+import RateReviewIcon from '@material-ui/icons/RateReview'
 import {
+  Link as LinkRimble,
   Card,
   Image,
   Box,
   Heading,
   Flex,
   Text,
-  Icon,
   Button
 } from 'rimble-ui'
 
@@ -22,21 +22,21 @@ const Flat = ({
 }) => (
   <Card
     width='auto'
-    maxWidth='800px'
+    maxWidth='700px'
     mx='auto'
     mb={2}
     p={0}
     borderRadius={8}
   >
     <Link href='/flats/[id]' as={`/flats/${id}`}>
-      <a>
+      <LinkRimble>
         <Image
           width={1}
           src={picture}
           borderRadius={8}
           alt='random image from unsplash.com'
         />
-      </a>
+      </LinkRimble>
     </Link>
 
     <Box px={[3, 3, 4]}>
@@ -51,7 +51,7 @@ const Flat = ({
       borderColor='#E8E8E8'
     >
       <Box width={1 / 2} display='flex' alignItems='center'>
-        <Icon name='RateReview' pr={1} color='primary' />
+        <RateReviewIcon style={{ color: '#4e3fce', marginRight: '0.5em' }} />
         <Text>{rating}</Text>
       </Box>
       <Box width={1 / 2} display='flex' alignItems='center'>
