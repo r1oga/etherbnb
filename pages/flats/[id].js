@@ -63,7 +63,7 @@ const Flat = ({ flat }) => {
 
 Flat.getInitialProps = async ({ query: { id } }) => {
   const res = await fetch(`http://localhost:3000/api/flats/${id}`)
-  const flat = res.json()
+  const flat = await res.json()
   return { flat }
 }
 
