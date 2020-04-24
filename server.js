@@ -95,7 +95,7 @@ nextApp.prepare().then(() => {
   server.use(passport.session())
 
   // ROUTES
-  routes(server)
+  routes(server, passport)
 
   server.all('*', (req, res) => {
     return handle(req, res)

@@ -9,20 +9,19 @@ module.exports = async (req, res) => {
   const { email, password, passwordRepeat } = req.body
 
   if (password !== passwordRepeat) {
-    res.end(JSON.stringify({
+    return res.end(JSON.stringify({
       status: 'error',
       message: 'Passwords do not match'
     }))
-    return
   }
+
   try {
     const user = await User.create({ email, password })
 
     req.login(user, err => {
       if (err) {
         res.statusCode = 500
-        res.end(JSON.stringify({ status: 'error', message: err }))
-        return
+        return res.end(JSON.stringify({ status: 'error', message: err }))
       }
       return res.end(JSON.stringify({ status: 'success', message: 'User logged in' }))
     })

@@ -38,9 +38,7 @@ User.init({
   }
 })
 
-User.prototype.isPasswordValid = async (password) => {
-  return bcrypt.compare(password, this.password)
-}
+User.prototype.isPasswordValid = async password => bcrypt.compare(password, this.password)
 
 exports.User = User
 exports.sequelize = sequelize
