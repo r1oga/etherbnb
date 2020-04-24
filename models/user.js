@@ -1,27 +1,17 @@
 const bcrypt = require('bcrypt')
 
-const Sequelize = require('sequelize')
-const Model = Sequelize.Model
-const DataTypes = Sequelize.DataTypes
+const Sequelize = require('sequelize') // class
+const sequelize = require('../db') // initialized Sequelize instance
 
-const Database = require('./db')
-const { user, password, host, database } = Database
-
-const sequelize = new Sequelize(database, user, password, {
-  host,
-  dialect: 'postgres',
-  logging: false
-})
-
-class User extends Model {}
+class User extends Sequelize.Model {}
 
 User.init({
   email: {
-    type: DataTypes.STRING,
+    type: Sequelize.DataTypes.STRING,
     allowNull: false
   },
   password: {
-    type: DataTypes.STRING,
+    type: Sequelize.DataTypes.STRING,
     allowNull: false
   }
 },
@@ -42,5 +32,4 @@ User.prototype.isPasswordValid = async function (password) {
   return bcrypt.compare(password, this.password)
 }
 
-exports.User = User
-exports.sequelize = sequelize
+module.exports = User

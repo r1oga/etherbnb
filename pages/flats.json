@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "hostName": "Jean",
     "picture": "/img/flats/11.jpg",
     "entirePlace": false,
     "type": "Private room in apartment",
@@ -49,6 +50,7 @@
   },
   {
     "id": "2",
+    "hostName": "Patrick",
     "picture": "/img/flats/21.jpg",
     "type": "Entire condominium",
     "entirePlace": true,
@@ -99,6 +101,7 @@
   },
   {
     "id": "3",
+    "hostName": "Marie",
     "picture": "/img/flats/31.jpg",
     "type": "Private room in house-boat",
     "entirePlace": false,

@@ -1,4 +1,4 @@
-const User = require('../model.js').User
+const User = require('../models/user')
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
