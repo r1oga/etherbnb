@@ -3,8 +3,9 @@ import Head from 'next/head'
 import { Flex, Box, Heading, Text, Card, Button } from 'rimble-ui'
 import { useState } from 'react'
 import { differenceInCalendarDays } from 'date-fns'
-import { useStoreActions } from 'easy-peasy'
+import { useStoreActions, useStoreState } from 'easy-peasy'
 import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 
 import Layout from '../../components/Layout'
 import FlatComponent from '../../components/Flat'
@@ -13,8 +14,28 @@ import DateRangePicker from '../../components/DateRangePicker'
 const Flat = ({ flat }) => {
   const [dateChosen, setDateChosen] = useState(false)
   const [numberNights, setNumberNights] = useState(0)
+  const [startDate, setStartDate] = useState()
+  const [endDate, setEndDate] = useState()
+  const user = useStoreState(state => state.user.user)
 
   const openLogin = useStoreActions(actions => actions.modals.openLogin)
+
+  const book = async () => {
+    try {
+      const response = await axios.post('/api/flats/book', {
+        flatId: flat.id,
+        startDate,
+        endDate
+      })
+      if (response.data.status === 'error') {
+        alert(response.data.message)
+        return
+      }
+      console.log(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Layout>
@@ -29,6 +50,8 @@ const Flat = ({ flat }) => {
           <DateRangePicker datesChanged={(startDate, endDate) => {
             setNumberNights(differenceInCalendarDays(endDate, startDate))
             setDateChosen(true)
+            setStartDate(startDate)
+            setEndDate(endDate)
           }}
           />
           {
@@ -49,9 +72,19 @@ const Flat = ({ flat }) => {
                     <Text>{(numberNights * flat.nightPrice).toFixed(2)} €</Text>
                   </Box>
                 </Flex>
-                <Button mt={2} width={1} onClick={openLogin}>
+                {user ? (
+                  <Button
+                    mt={2}
+                    width={1}
+                    onClick={book}
+                  >
                     Book
-                </Button>
+                  </Button>
+                ) : (
+                  <Button mt={2} width={1} onClick={openLogin}>
+                    Log in to book
+                  </Button>
+                )}
               </Card>
             )
           }

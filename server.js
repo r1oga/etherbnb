@@ -9,6 +9,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const User = require('./models/user')
 const Flat = require('./models/flat')
 const Review = require('./models/review')
+const Booking = require('./models/booking')
 const sequelize = require('./db')
 
 const session = require('express-session')
@@ -20,6 +21,7 @@ const sessionStore = new SequelizeStore({ db: sequelize })
 User.sync({ alter: true })
 Flat.sync({ alter: true })
 Review.sync({ alter: true })
+Booking.sync({ alter: true })
 
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
