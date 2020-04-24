@@ -11,7 +11,7 @@ House.init(
     type: { type: Sequelize.DataTypes.STRING, allowNull: false },
     town: { type: Sequelize.DataTypes.STRING, allowNull: false },
     title: { type: Sequelize.DataTypes.STRING, allowNull: false },
-    price: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
+    nightPrice: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
     superhost: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
     description: { type: Sequelize.DataTypes.TEXT },
     guests: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
@@ -22,7 +22,7 @@ House.init(
     // amenities
     wifi: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
     kitchen: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
-    heating: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
+    airConditioning: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
     freeParking: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false }
   },
   {
