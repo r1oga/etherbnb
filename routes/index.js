@@ -28,8 +28,14 @@ module.exports = (server, passport) => {
   server.get(`${ENDPOINT}flats/:id`, ({ params: { id } }, res) => {
     Flat.findByPk(id).then(flat => {
       if (flat) {
-        res.writeHead(200, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify(flat.dataValues))
+        Review
+          .findAndCountAll({ where: { flatId: flat.id } })
+          .then(reviews => {
+            flat.dataValues.reviews = reviews.rows.map(review => review.dataValues)
+            flat.dataValues.reviewsCount = reviews.count
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify(flat.dataValues))
+          })
       } else {
         res.writeHead(404, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ message: 'Not found' }))

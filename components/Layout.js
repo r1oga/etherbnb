@@ -12,7 +12,7 @@ export default props => {
       <Header />
       <main style={{ marginTop: '2%', marginBottom: '2%' }}>{props.children}</main>
       <Modal>Modal</Modal>
-      <Footer mt={3} />
+      <Footer mt={2} />
     </>
   )
 }

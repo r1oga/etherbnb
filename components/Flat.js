@@ -16,7 +16,9 @@ const Flat = ({
   type,
   picture,
   town,
-  id
+  id,
+  reviewsCount,
+  reviews
 }) => {
   return (
     <Card
@@ -42,21 +44,26 @@ const Flat = ({
         <Heading.h3 my={2}>{title}</Heading.h3>
         <Heading.h5 color='#666' my={2}>{type} - {town}</Heading.h5>
       </Box>
-
-      <Flex
+      <Box
         px={[3, 3, 4]}
         py={2}
         borderTop={1}
         borderColor='#E8E8E8'
       >
-        <Box width={1 / 2} display='flex' alignItems='center'>
-          <RateReviewIcon style={{ color: '#4e3fce', marginRight: '0.5em' }} />
-          <Text>rating</Text>
-        </Box>
-        <Box width={1 / 2} display='flex' alignItems='center'>
-          <Text>reviewsCount reviews</Text>
-        </Box>
-      </Flex>
+        {reviewsCount ? (
+          <>
+            <Heading.h4>{reviewsCount} review(s)</Heading.h4>
+            {reviews.map((review, index) => (
+              <div key={index}>
+                <p>{new Date(review.createdAt).toDateString()}</p>
+                <p>{review.comment}</p>
+              </div>
+            ))}
+          </>
+        ) : (
+          <></>
+        )}
+      </Box>
     </Card>
   )
 }
