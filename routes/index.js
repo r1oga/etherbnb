@@ -1,6 +1,6 @@
 const register = require('./register')
 const login = require('./login')
-const { book, booked } = require('./book')
+const { book, booked, check } = require('./book')
 const { getFlat, getFlats } = require('./flats')
 
 const ENDPOINT = '/api/'
@@ -15,9 +15,9 @@ module.exports = (server, passport) => {
   })
   server.post(`${ENDPOINT}auth/login`, login(passport))
 
-  server.get(`${ENDPOINT}flats`, getFlats)
-  server.get(`${ENDPOINT}flats/:id`, getFlat)
-
   server.post(`${ENDPOINT}flats/book`, book)
   server.post(`${ENDPOINT}flats/booked`, booked)
+  server.post(`${ENDPOINT}flats/check`, check)
+  server.get(`${ENDPOINT}flats/:id`, getFlat)
+  server.get(`${ENDPOINT}flats`, getFlats)
 }

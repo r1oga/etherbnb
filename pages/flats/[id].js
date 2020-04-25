@@ -11,6 +11,20 @@ import Layout from '../../components/Layout'
 import FlatComponent from '../../components/Flat'
 import DateRangePicker from '../../components/DateRangePicker'
 
+const getBookedDates = async flatId => {
+  try {
+    const response = await axios.post('http://localhost:3000/api/flats/booked', { flatId })
+
+    if (response.data.status === 'error') {
+      alert(response.data.message)
+      return
+    }
+    return response.data.dates
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const Flat = ({ flat }) => {
   const [dateChosen, setDateChosen] = useState(false)
   const [numberNights, setNumberNights] = useState(0)
@@ -47,12 +61,14 @@ const Flat = ({ flat }) => {
           <FlatComponent {...flat} />
         </Box>
         <Box mx={[0, 3]} width={[1, 1 / 2, 2 / 5]}>
-          <DateRangePicker datesChanged={(startDate, endDate) => {
-            setNumberNights(differenceInCalendarDays(endDate, startDate))
-            setDateChosen(true)
-            setStartDate(startDate)
-            setEndDate(endDate)
-          }}
+          <DateRangePicker
+            datesChanged={(startDate, endDate) => {
+              setNumberNights(differenceInCalendarDays(endDate, startDate))
+              setDateChosen(true)
+              setStartDate(startDate)
+              setEndDate(endDate)
+            }}
+            bookedDates={flat.bookedDates}
           />
           {
             dateChosen && (
@@ -97,6 +113,8 @@ const Flat = ({ flat }) => {
 Flat.getInitialProps = async ({ query: { id } }) => {
   const res = await fetch(`http://localhost:3000/api/flats/${id}`)
   const flat = await res.json()
+  const bookedDates = await getBookedDates(id)
+  console.log(bookedDates)
   return { flat }
 }
 

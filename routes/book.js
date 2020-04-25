@@ -27,8 +27,6 @@ exports.booked = async ({ body: { flatId } }, res) => {
   let bookedDates = []
 
   for (const result of results) {
-    console.log(result.startDate)
-    console.log(result.endDate)
     const dates = eachDayOfInterval({
       start: parse(result.startDate, 'yyyy-MM-dd', new Date()),
       end: parse(result.endDate, 'yyyy-MM-dd', new Date())
@@ -45,4 +43,20 @@ exports.booked = async ({ body: { flatId } }, res) => {
     message: 'ok',
     dates: bookedDates
   })
+}
+
+exports.check = async ({ body: { starDate, enDate, flatId } }, res) => {
+  const results = await Booking.findAll({
+    where: {
+      flatId: flatId,
+      startDate: { [Op.lte]: new Date(endDate) },
+      endDate: { [Op.gte]: new Date(startDate) }
+    }
+  })
+
+  let message = 'free'
+  if (!(results.length > 0)) {
+    message = 'unavailable'
+  }
+  res.json({ status: 'success', message })
 }

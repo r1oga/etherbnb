@@ -7,9 +7,14 @@ import dateFnsFormat from 'date-fns/format'
 import DayPickerInput from './DayPickerInput'
 import { tomorrow, format } from '../lib/dates'
 
-export default ({ datesChanged }) => {
+export default ({ datesChanged, bookedDates }) => {
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(tomorrow(new Date()))
+  try {
+    bookedDates = bookedDates.map(date => new Date(date))
+  } catch (error) {
+    bookedDates = []
+  }
 
   return (
     <>
@@ -29,9 +34,10 @@ export default ({ datesChanged }) => {
                   date={startDate}
                   dayPickerProps={{
                     modifiers: {
-                      disabled: {
-                        before: new Date()
-                      }
+                      disabled: [
+                        ...bookedDates,
+                        { before: new Date() }
+                      ]
                     }
                   }}
                   onDayChange={day => {
@@ -56,6 +62,7 @@ export default ({ datesChanged }) => {
                     modifiers: {
                       disabled: [
                         startDate,
+                        ...bookedDates,
                         { before: startDate }
                       ]
                     }
