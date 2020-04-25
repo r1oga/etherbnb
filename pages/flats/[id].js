@@ -34,7 +34,26 @@ const Flat = ({ flat }) => {
 
   const openLogin = useStoreActions(actions => actions.modals.openLogin)
 
+  const canBook = async () => {
+    try {
+      const response = await axios.post('http://localhost/api/flats/check', { flatId: flat.id, startDate, endDate })
+      if (response.data.status === 'error') {
+        alert(response.data.message)
+        return
+      }
+      if (response.data.message = 'unavailable') return false
+      return true
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const book = async () => {
+    const available = await canBook()
+    if (!available) {
+      alert('These dates are not valid (busy in between)')
+      return
+    }
     try {
       const response = await axios.post('/api/flats/book', {
         flatId: flat.id,
@@ -114,7 +133,7 @@ Flat.getInitialProps = async ({ query: { id } }) => {
   const res = await fetch(`http://localhost:3000/api/flats/${id}`)
   const flat = await res.json()
   const bookedDates = await getBookedDates(id)
-  console.log(bookedDates)
+  flat.bookedDates = bookedDates
   return { flat }
 }
 
