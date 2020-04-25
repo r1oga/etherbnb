@@ -34,6 +34,7 @@
     "react-dom": "^16.8.0",
     "rimble-ui": "^0.14.0",
     "sequelize": "^5.21.7",
+    "stripe": "^8.47.0",
     "styled-components": "^5.0.0"
   },
   "devDependencies": {

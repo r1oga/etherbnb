@@ -28,6 +28,11 @@ export default () => {
       {user
         ? (
           <>{user}
+            <Link href='/host'>
+              <LinkRimble mx={3}>
+              Your Flats
+              </LinkRimble>
+            </Link>
             <Button
               mx={2}
               fontSize={[1, 2, 3]}
