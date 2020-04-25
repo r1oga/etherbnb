@@ -36,8 +36,8 @@ const Booking = ({ booking, flat }) => {
         borderTop={1}
         borderColor='#E8E8E8'
       >
-        <p>From{' '}{new Date(booking.booking.startDate).toDateString()}</p>
-        <p>To{' '}{new Date(booking.booking.endDate).toDateString()}</p>
+        <p>From{' '}{new Date(booking.startDate).toDateString()}</p>
+        <p>To{' '}{new Date(booking.endDate).toDateString()}</p>
       </Box>
     </Card>
   )

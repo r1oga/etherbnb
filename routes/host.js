@@ -13,11 +13,12 @@ module.exports = async (req, res) => {
   const user = await User.findOne({ where: { email: userEmail } })
 
   const flats = await Flat.findAll({ where: { host: user.id } })
+  // console.log(flats)
   const flatIds = flats.map(flat => flat.dataValues.id)
 
   const bookingsData = await Booking.findAll({
     where: {
-      paid: true,
+      // paid: true,
       flatId: { [Op.in]: flatIds },
       endDate: { [Op.gte]: new Date() }
     },
