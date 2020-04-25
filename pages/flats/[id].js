@@ -13,7 +13,10 @@ import DateRangePicker from '../../components/DateRangePicker'
 
 const getBookedDates = async flatId => {
   try {
-    const response = await axios.post('http://localhost:3000/api/flats/booked', { flatId })
+    const response = await axios.post(
+      'http://localhost:3000/api/flats/booked',
+      { flatId }
+    )
 
     if (response.data.status === 'error') {
       alert(response.data.message)
@@ -36,15 +39,14 @@ const Flat = ({ flat }) => {
 
   const canBook = async () => {
     try {
-      const response = await axios.post('http://localhost/api/flats/check', { flatId: flat.id, startDate, endDate })
-      if (response.data.status === 'error') {
-        alert(response.data.message)
-        return
-      }
-      if (response.data.message = 'unavailable') return false
+      const response = await axios.post(
+        'http://localhost:3000/api/flats/check',
+        { flatId: flat.id, startDate, endDate }
+      )
+      if (response.data.message === 'unavailable') return false
       return true
     } catch (error) {
-      console.log(error)
+      alert(error.toString())
     }
   }
 
@@ -55,18 +57,17 @@ const Flat = ({ flat }) => {
       return
     }
     try {
-      const response = await axios.post('/api/flats/book', {
-        flatId: flat.id,
-        startDate,
-        endDate
-      })
+      // const payload = { flatId: flat.id, startDate, endDate }
+      const response = await axios.post(
+        'http://localhost:3000/api/flats/book',
+        { flatId: flat.id, startDate, endDate }
+      )
       if (response.data.status === 'error') {
         alert(response.data.message)
         return
       }
-      console.log(response.data)
     } catch (error) {
-      console.log(error)
+      alert(error.toString())
     }
   }
 

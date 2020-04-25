@@ -24,6 +24,8 @@ const canBook = async (flatId, startDate, endDate) => {
 // }
 
 exports.book = async (req, res) => {
+  const { body: { flatId, startDate, endDate } } = req
+
   // NOT AUTHENTICATED
   if (!req.session.passport) {
     res.writeHead(403, { 'Content-Type': 'application/json' })
@@ -32,12 +34,11 @@ exports.book = async (req, res) => {
   }
 
   // PREVENT BOOKING ON SERVER SIDE IF BUSY
-  if (!(await canBook())) {
+  if (!(await canBook(flatId, startDate, endDate))) {
     res.writeHead(500, { 'Content-Type': 'application/json' })
     return res.json({ status: 'error', message: 'Flat already booked' })
   }
 
-  const { body: { flatId, startDate, endDate } } = req
   const userEmail = req.session.passport.user
   User.findOne({ where: { email: userEmail } }).then(user => {
     Booking.create({
@@ -78,10 +79,10 @@ exports.booked = async ({ body: { flatId } }, res) => {
   })
 }
 
-exports.check = async ({ body: { starDate, endDate, flatId } }, res) => {
+exports.check = async ({ body: { startDate, endDate, flatId } }, res) => {
   let message = 'free'
-  if (!(await canBook())) {
+  if (!(await canBook(flatId, startDate, endDate))) {
     message = 'unavailable'
   }
-  res.json({ status: 'success', message })
+  return res.json({ status: 'success', message })
 }
