@@ -25,10 +25,9 @@ const Flat = ({
 }) => {
   return (
     <Card
-      width='auto'
-      maxWidth='700px'
-      mx='auto'
-      mb={2}
+      minWidth='320px'
+      width={[1, 1 / 3, 1 / 6]}
+      mb={3}
       p={0}
       borderRadius={8}
     >
