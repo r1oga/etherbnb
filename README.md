@@ -1,7 +1,28 @@
-# rBnb
+# Rbnb
+Replica of Airbnb on web3.
+## To dos
+- [x] web2 version
+- [x] Postgres backend
+- [x] Server Side Rendered front end with nextjs
+- [x] Authentication with username and password (passport.js)
+- [x] Session stored in cookie
+- [ ] web 2 -> web3
+- [ ] write Ethereum smart contracts
+- [ ] modify models: e.g user to include public address
+- [ ] modify authentication: with metamask?
+- [ ] modify backend/data persistence: IPFS ?
 
-## Getting started: `ỳarn dev`
+## Getting started
+1. Download/clone repository
+2. Create `.env` in project root folder and define `SESSION_SECRET` and `BASE_URL` envrionment variables
+3. Deploy locally: `yarn dev`
+4. Access application on [localhost:3000](http://localhost:3000/)
+
 
 ## Built with
-- [next.js](https://nextjs.org/)
-- [rimble-ui](https://rimble.consensys.design/)
+- [Next](https://nextjs.org/)
+- [Rimble UI](https://rimble.consensys.design/)
+- [Express](https://expressjs.com/)
+
+## Credit
+[Flavio Copes](https://flaviocopes.com/) [Next.js course](https://nextjscourse.com/)
