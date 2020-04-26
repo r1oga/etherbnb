@@ -13,7 +13,7 @@ const Host = ({ flats, bookings }) => {
       <Head><title>Your flats</title></Head>
       <Heading.h2 textAlign='center'>Your Flats</Heading.h2>
       <div className='flats'>
-        {flats.map((flat, index) => <Flat key={index} {...flat} />)}
+        {flats.map((flat, index) => <Flat key={index} {...flat} route='host' />)}
       </div>
       <Heading.h2 textAlign='center'>Your Bookings</Heading.h2>
       <div className='flats'>

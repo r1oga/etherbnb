@@ -9,7 +9,7 @@ const Index = ({ flats }) => (
   <Layout>
     <Heading.h2 textAlign='center'>Places to stay at</Heading.h2>
     <div className='flats'>
-      {flats.map((flat, index) => <Flat key={index} {...flat} />)}
+      {flats.map((flat, index) => <Flat key={index} {...flat} route='flats' />)}
     </div>
   </Layout>
 )

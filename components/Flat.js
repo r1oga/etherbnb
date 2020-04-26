@@ -18,7 +18,8 @@ const Flat = ({
   town,
   id,
   reviewsCount,
-  reviews
+  reviews,
+  route
 }) => {
   return (
     <Card
@@ -29,7 +30,7 @@ const Flat = ({
       p={0}
       borderRadius={8}
     >
-      <Link href='/flats/[id]' as={`/flats/${id}`}>
+      <Link href={`/${route}/[id]`} as={`/${route}/${id}`}>
         <LinkRimble>
           <Image
             width={1}

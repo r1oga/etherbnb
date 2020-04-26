@@ -35,7 +35,6 @@ exports.getFlatsFromHost = async (req, res) => {
 
 exports.addFlat = async (req, res) => {
   const { flat } = req.body
-  console.log(flat)
   if (!req.session.passport) {
     return res.status(403).json({ status: 'error', message: 'Unauthorized' })
   }
