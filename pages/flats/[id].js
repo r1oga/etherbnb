@@ -78,7 +78,7 @@ const Flat = ({ flat }) => {
           <title>{flat.title}</title>
         </Head>
         <Box width={[1, 1 / 2, 3 / 5]}>
-          <FlatComponent {...flat} route='flats' />
+          <FlatComponent {...flat} route='flats' detailed />
         </Box>
         <Box mx={[0, 3]} width={[1, 1 / 2, 2 / 5]}>
           <DateRangePicker

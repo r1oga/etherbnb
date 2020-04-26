@@ -17,6 +17,8 @@ const Flat = ({
   picture,
   town,
   id,
+  description,
+  detailed,
   reviewsCount,
   reviews,
   route
@@ -51,6 +53,7 @@ const Flat = ({
         borderTop={1}
         borderColor='#E8E8E8'
       >
+        <Text>{detailed ? description : `${description.slice(0, 60)}...`}</Text>
         {reviewsCount ? (
           <>
             <Heading.h4>{reviewsCount} review(s)</Heading.h4>
