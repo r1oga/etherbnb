@@ -11,6 +11,7 @@ export default props => {
     <>
       <Head>
         <script src='https://js.stripe.com/v3/' />
+        <link rel='icon' type='image/png' href='../img/airbnb.png' />
       </Head>
       <Header />
       <main style={{ marginTop: '2%', marginBottom: '2%' }}>{props.children}</main>

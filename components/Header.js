@@ -16,7 +16,7 @@ export default () => {
         <Link href='/'>
           <LinkRimble>
             <Image
-              src='../img/favicon.ico'
+              src='../img/airbnb.png'
               alt='Logo'
               height={['30px', '40px', '50px']}
               mr={[3, 5, 5]}
