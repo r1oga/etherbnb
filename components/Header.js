@@ -33,6 +33,11 @@ export default () => {
               Your Flats
               </LinkRimble>
             </Link>
+            <Link href='/host/new'>
+              <LinkRimble mx={3}>
+                Add Flat
+              </LinkRimble>
+            </Link>
             <Button
               mx={2}
               fontSize={[1, 2, 3]}

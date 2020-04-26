@@ -4,7 +4,7 @@ const Flat = require('../models/flat')
 const User = require('../models/user')
 const Booking = require('../models/booking')
 
-module.exports = async (req, res) => {
+exports.getFlatsFromHost = async (req, res) => {
   if (!req.session.passport || !req.session.passport.user) {
     return res.satus(403).json({ status: 'error', message: 'Unauthorized' })
   }
@@ -31,4 +31,19 @@ module.exports = async (req, res) => {
     }
   }))
   return res.status(200).json({ flats, bookings })
+}
+
+exports.addFlat = async (req, res) => {
+  const { flat } = req.body
+  if (!req.session.passport) {
+    return res.status(403).json({ status: 'error', message: 'Unauthorized' })
+  }
+
+  const userEmail = req.session.passport.user
+  User.findOne({ where: { email: userEmail } }).then(user => {
+    flat.host = user.id
+    Flat.create(flat).then(() => {
+      return res.status(200).json({ status: 'success', message: 'ok' })
+    })
+  })
 }
