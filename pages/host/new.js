@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import {
@@ -64,7 +65,7 @@ export default () => {
         alert(response.data.message)
         return
       }
-      goto('/host')
+      Router.push('/host')
     } catch (error) {
       console.log(error)
     }
@@ -111,7 +112,7 @@ export default () => {
               value={guests}
               type='number'
               required
-              placeholder='Number of guests'
+              placeholder='# guests'
               width={1}
               onChange={event => setGuests(event.target.value)}
             />
@@ -136,36 +137,49 @@ export default () => {
             onChange={event => setDescription(event.target.value)}
           />
         </Field>
-        <Flex>
-          <Field label='Number of bedrooms' width={1} mr={1}>
+        <Flex justifyContent='space-between'>
+          <Field label='Bedrooms' maxWidth='200px' mr={1}>
             <Input
               value={bedrooms}
               type='number'
               required
-              placeholder='Number of bedrooms'
+              placeholder='# bedrooms'
               width={1}
               onChange={event => setBedrooms(event.target.value)}
             />
           </Field>
-          <Field label='Number of beds' width={1} mr={1}>
+          <Field label='Beds' maxWidth='200px' mr={1}>
             <Input
               value={beds}
               type='number'
               required
-              placeholder='Number of beds'
+              placeholder='# beds'
               width={1}
               onChange={event => setBeds(event.target.value)}
             />
           </Field>
-          <Field label='Number of bathrooms' width={1}>
+          <Field label='Bathrooms' maxWidth='200px' mr={1}>
             <Input
               value={bathrooms}
               type='number'
               required
-              placeholder='Number of bathrooms'
+              placeholder='# bathrooms'
               width={1}
               onChange={event => setBathrooms(event.target.value)}
             />
+          </Field>
+          <Field label='Type' maxWidth='200px'>
+            <select
+              onChange={event => setType(event.target.value)}
+              value={type}
+              required
+            >
+              {types.map((item, key) => (
+                <option value={item} key={key}>
+                  {item}
+                </option>
+              ))}
+            </select>
           </Field>
         </Flex>
         <Flex flexWrap='wrap' justifyContent='space-between' className='checkboxes'>
@@ -225,19 +239,6 @@ export default () => {
             label='Entire place'
           />
         </Flex>
-        <Field label='Type'>
-          <select
-            onChange={event => setType(event.target.value)}
-            value={type}
-            required
-          >
-            {types.map((item, key) => (
-              <option value={item} key={key}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </Field>
         <Button type='submit' width={1}>Add</Button>
       </Form>
     </Layout>

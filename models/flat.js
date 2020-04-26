@@ -23,7 +23,12 @@ Flat.init(
     wifi: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
     kitchen: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
     airConditioning: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
-    freeParking: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false }
+    freeParking: { type: Sequelize.DataTypes.BOOLEAN, allowNull: false },
+    superhost: {
+      type: Sequelize.DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false
+    }
   },
   {
     sequelize,
