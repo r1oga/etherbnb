@@ -6,7 +6,7 @@ const EditFlat = ({ flat }) => {
   // console.log(flat)
   return (
     <Layout>
-      <FlatForm edit />
+      <FlatForm {...flat} edit />
     </Layout>
 
   )

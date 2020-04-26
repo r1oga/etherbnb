@@ -16,22 +16,22 @@ import {
 } from 'rimble-ui'
 import axios from 'axios'
 
-export default ({ edit }) => {
-  const [title, setTitle] = useState('')
-  const [town, setTown] = useState('')
-  const [nightPrice, setNightPrice] = useState(0)
-  const [picture, setPicture] = useState('')
-  const [description, setDescription] = useState('')
-  const [guests, setGuests] = useState(0)
-  const [bedrooms, setBedrooms] = useState(0)
-  const [beds, setBeds] = useState(0)
-  const [bathrooms, setBathrooms] = useState(0)
-  const [wifi, setWifi] = useState(false)
-  const [kitchen, setKitchen] = useState(false)
-  const [airConditioning, setAirConditioning] = useState(false)
-  const [freeParking, setFreeParking] = useState(false)
-  const [entirePlace, setEntirePlace] = useState(false)
-  const [type, setType] = useState('Entire flat')
+export default props => {
+  const [title, setTitle] = useState(props.title || '')
+  const [town, setTown] = useState(props.town || '')
+  const [nightPrice, setNightPrice] = useState(props.nightPrice || 0)
+  const [picture, setPicture] = useState(props.picture || '')
+  const [description, setDescription] = useState(props.description || '')
+  const [guests, setGuests] = useState(props.guests || 0)
+  const [bedrooms, setBedrooms] = useState(props.bedrooms || 0)
+  const [beds, setBeds] = useState(props.beds || 0)
+  const [bathrooms, setBathrooms] = useState(props.bathrooms || 0)
+  const [wifi, setWifi] = useState(props.wifi || false)
+  const [kitchen, setKitchen] = useState(props.kitchen || false)
+  const [airConditioning, setAirConditioning] = useState(props.airConditioning || false)
+  const [freeParking, setFreeParking] = useState(props.freeParking || false)
+  const [entirePlace, setEntirePlace] = useState(props.entirePlace || false)
+  const [type, setType] = useState(props.type || 'Flat')
 
   const types = ['House', 'Flat']
 
@@ -71,7 +71,7 @@ export default ({ edit }) => {
   return (
     <Form onSubmit={onSubmit}>
       <Heading.h2>
-        {edit ? <>Edit flat</> : <>Add a new flat</>}
+        {props.edit ? <>Edit flat</> : <>Add a new flat</>}
       </Heading.h2>
       <Flex flexWrap='wrap' justifyContent='space-between'>
         <Field label='Title' maxWidth='300px'>
@@ -179,7 +179,7 @@ export default ({ edit }) => {
           </select>
         </Field>
       </Flex>
-      <Flex flexWrap='wrap' justifyContent='space-between' className='checkboxes'>
+      <Flex flexWrap='wrap' justifyContent='space-around' className='checkboxes'>
         <FormControlLabel
           control={
             <Checkbox
@@ -236,7 +236,7 @@ export default ({ edit }) => {
           label='Entire place'
         />
       </Flex>
-      <Button type='submit' width={1}>Add</Button>
+      <Button type='submit' width={1}>{props.edit ? 'Update' : 'Add'}</Button>
     </Form>
   )
 }
