@@ -50,13 +50,17 @@ export default props => {
     airConditioning,
     freeParking,
     entirePlace,
-    type
+    type,
+    id: props.id || null
   }
 
   const onSubmit = async event => {
     event.preventDefault()
     try {
-      const response = await axios.post('/api/host/new', { flat })
+      const response = await axios.post(
+        `/api/host/${props.edit ? 'edit' : 'new'}`,
+        { flat }
+      )
 
       if (response.data.status === 'error') {
         alert(response.data.message)

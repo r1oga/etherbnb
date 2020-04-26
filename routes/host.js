@@ -5,6 +5,7 @@ const User = require('../models/user')
 const Booking = require('../models/booking')
 
 exports.getFlatsFromHost = async (req, res) => {
+  // athenticated?
   if (!req.session.passport || !req.session.passport.user) {
     return res.satus(403).json({ status: 'error', message: 'Unauthorized' })
   }
@@ -34,6 +35,7 @@ exports.getFlatsFromHost = async (req, res) => {
 }
 
 exports.addFlat = async (req, res) => {
+  // athenticated?
   const { flat } = req.body
   if (!req.session.passport) {
     return res.status(403).json({ status: 'error', message: 'Unauthorized' })
@@ -46,4 +48,37 @@ exports.addFlat = async (req, res) => {
       return res.status(200).json({ status: 'success', message: 'ok' })
     })
   })
+}
+
+exports.editFlat = async (req, res) => {
+  // athenticated?
+  console.log(flatData)
+  if (!req.session.passport) {
+    return res.status(403).json({ status: 'error', message: 'Unauthorized' })
+  }
+
+  const userEmail = req.session.passport.user
+
+  User
+    .findOne({ where: { email: userEmail } })
+    .then(user => {
+      Flat
+        .findByPk(flatData.id)
+        .then(flat => {
+          if (flat) {
+            // is the user the owner of the flat?
+            if (flat.host !== user.id) {
+              return res.status(403).json({ status: 'error', message: 'Unauthorized' })
+            }
+
+            Flat
+              .update(flatData, { where: { id: flatData.id } })
+              .then(() => res.status(200).json({ status: 'success', message: 'ok' }))
+              .catch(err => res.status(500).json({ status: 'error', message: err.name }))
+          } else {
+            return res.status(404).json({ status: 'error', message: 'Not found' })
+          }
+        })
+        .catch(err => res.status(500).json({ status: 'error', message: err.name }))
+    })
 }
