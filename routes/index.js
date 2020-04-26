@@ -1,7 +1,7 @@
 const register = require('./register')
 const login = require('./login')
 const session = require('./stripe')
-const { getFlatsFromHost, addFlat, editFlat } = require('./host')
+const { getFlatsFromHost, addFlat, editFlat, handleImage } = require('./host')
 const { book, booked, check } = require('./book')
 const { getFlat, getFlats } = require('./flats')
 
@@ -31,4 +31,6 @@ module.exports = (server, passport) => {
   server.post(`${ENDPOINT}host/new`, addFlat)
   server.post(`${ENDPOINT}host/new`, addFlat)
   server.post(`${ENDPOINT}host/edit`, editFlat)
+  server.post(`${ENDPOINT}host/edit`, editFlat)
+  server.post(`${ENDPOINT}host/image`, handleImage)
 }

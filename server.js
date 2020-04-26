@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const next = require('next')
+const fileupload = require('express-fileupload')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -80,6 +81,7 @@ nextApp.prepare().then(() => {
   const server = express()
   // MIDDLEWARES
   server.use(bodyParser.json())
+  server.use(fileupload())
 
   /* express-session middleware:
     'value'each user gets assigned a unique session and link their requests together.

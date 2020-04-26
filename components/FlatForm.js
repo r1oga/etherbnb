@@ -12,7 +12,8 @@ import {
   Input,
   Text,
   Textarea,
-  Select
+  Select,
+  Image
 } from 'rimble-ui'
 import axios from 'axios'
 
@@ -120,13 +121,26 @@ export default props => {
         </Field>
       </Flex>
       <Field label='Picture' width={1}>
+        {picture ? (
+          <Image
+            mb={2}
+            src={picture}
+            width={1}
+            alt='Flat image'
+            borderRadius={8}
+          />
+        ) : ''}
         <Input
-          value={picture}
-          type='text'
+          type='file'
           required
-          placeholder='Picture URL'
-          width={1}
-          onChange={event => setPicture(event.target.value)}
+          accept='image/*'
+          onChange={async event => {
+            const files = event.target.files
+            const formData = new FormData()
+            formData.append('image', files[0])
+            const response = await axios.post('/api/host/image', formData)
+            setPicture(`http://localhost:3000${response.data.path}`)
+          }}
         />
       </Field>
       <Field label='Description' width={1}>

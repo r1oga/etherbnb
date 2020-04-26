@@ -1,4 +1,5 @@
 const Op = require('sequelize').Op
+const randomstring = require('randomstring')
 
 const Flat = require('../models/flat')
 const User = require('../models/user')
@@ -52,12 +53,12 @@ exports.addFlat = async (req, res) => {
 
 exports.editFlat = async (req, res) => {
   // athenticated?
-  console.log(flatData)
   if (!req.session.passport) {
     return res.status(403).json({ status: 'error', message: 'Unauthorized' })
   }
 
   const userEmail = req.session.passport.user
+  const { flat: flatData } = req.body
 
   User
     .findOne({ where: { email: userEmail } })
@@ -81,4 +82,24 @@ exports.editFlat = async (req, res) => {
         })
         .catch(err => res.status(500).json({ status: 'error', message: err.name }))
     })
+}
+
+exports.handleImage = async (req, res) => {
+  // athenticated?
+  if (!req.session.passport) {
+    return res.status(403).json({ status: 'error', message: 'Unauthorized' })
+  }
+
+  const image = req.files.image
+  const fileName = randomstring.generate(7) + image.name.replace(/\s/g, '')
+  const path = __dirname + '/../public/img/flats/' + fileName
+
+  image.mv(path, error => {
+    if (error) {
+      console.error(error)
+      return res.status(500).json({ status: 'error', message: error })
+    }
+
+    return res.status(200).json({ status: 'sucess', path: '/img/flats/' + fileName })
+  })
 }
