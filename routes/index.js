@@ -29,8 +29,6 @@ module.exports = (server, passport) => {
   // HOST
   server.get(`${ENDPOINT}host/list`, getFlatsFromHost)
   server.post(`${ENDPOINT}host/new`, addFlat)
-  server.post(`${ENDPOINT}host/new`, addFlat)
-  server.post(`${ENDPOINT}host/edit`, editFlat)
   server.post(`${ENDPOINT}host/edit`, editFlat)
   server.post(`${ENDPOINT}host/image`, handleImage)
 }

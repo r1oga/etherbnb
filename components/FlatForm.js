@@ -36,6 +36,7 @@ export default props => {
 
   const types = ['House', 'Flat']
 
+  console.log(picture)
   const flat = {
     title,
     town,
@@ -123,17 +124,16 @@ export default props => {
       <Field label='Picture' width={1}>
         {picture ? (
           <Image
+            maxWidth='300px'
             mb={2}
             src={picture}
-            maxWidth='500px'
             width={1}
             alt='Flat image'
             borderRadius={8}
           />
-        ) : ''}
+        ) : (<></>)}
         <Input
           type='file'
-          required
           accept='image/*'
           onChange={async event => {
             const files = event.target.files
