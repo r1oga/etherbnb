@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Heading } from 'rimble-ui'
+import { Heading, Flex, Box } from 'rimble-ui'
 
 import Layout from '../../components/Layout'
 import Flat from '../../components/Flat'
@@ -13,7 +13,13 @@ const Host = ({ flats, bookings }) => {
       <Head><title>Your flats</title></Head>
       <Heading.h2 textAlign='center'>Your Flats</Heading.h2>
       <div className='flats'>
-        {flats.map((flat, index) => <Flat key={index} {...flat} route='host' />)}
+        <Flex flexWrap='wrap' justifyContent='space-around'>
+          {flats.map((flat, index) => (
+            <Flex width='320px'>
+              <Flat key={index} {...flat} route='host' />
+            </Flex>
+          ))}
+        </Flex>
       </div>
       <Heading.h2 textAlign='center'>Your Bookings</Heading.h2>
       <div className='flats'>

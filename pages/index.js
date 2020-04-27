@@ -1,4 +1,4 @@
-import { Heading, Flex } from 'rimble-ui'
+import { Heading, Flex, Box } from 'rimble-ui'
 import fetch from 'isomorphic-unfetch'
 
 import flats from './flats.json'
@@ -9,7 +9,11 @@ const Index = ({ flats }) => (
   <Layout>
     <Heading.h2 textAlign='center'>Places to stay at</Heading.h2>
     <Flex flexWrap='wrap' justifyContent='space-around'>
-      {flats.map((flat, index) => <Flat key={index} {...flat} route='flats' />)}
+      {flats.map((flat, index) => (
+        <Flex width='320px' mx={1}>
+          <Flat key={index} {...flat} route='flats' />
+        </Flex>
+      ))}
     </Flex>
   </Layout>
 )

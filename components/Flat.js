@@ -26,7 +26,6 @@ const Flat = ({
   return (
     <Card
       minWidth='320px'
-      width={[1, 1 / 3, 1 / 6]}
       mb={3}
       p={0}
       borderRadius={8}

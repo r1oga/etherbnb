@@ -125,6 +125,7 @@ export default props => {
           <Image
             mb={2}
             src={picture}
+            maxWidth='500px'
             width={1}
             alt='Flat image'
             borderRadius={8}
