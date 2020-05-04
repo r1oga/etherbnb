@@ -14,7 +14,7 @@ export default props => {
         <link rel='icon' type='image/png' href='../img/airbnb.png' />
       </Head>
       <Header />
-      <main style={{ marginTop: '2%', marginBottom: '2%' }}>{props.children}</main>
+      <main style={{ marginTop: '1%', marginBottom: '1%' }}>{props.children}</main>
       <Modal>Modal</Modal>
       <Footer mt={2} />
     </>

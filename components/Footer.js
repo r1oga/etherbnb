@@ -7,6 +7,7 @@ export default () => (
     alignItems='center'
     justifyContent='center'
     flexDirection='column'
+    mt={0}
   >
     <p>Made by
       <LinkRimble

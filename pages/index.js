@@ -8,9 +8,9 @@ import Layout from '../components/Layout'
 const Index = ({ flats }) => (
   <Layout>
     <Heading.h2 textAlign='center'>Places to stay at</Heading.h2>
-    <Flex flexWrap='wrap' justifyContent='space-around'>
+    <Flex flexWrap='wrap' justifyContent='space-around' my={0}>
       {flats.map((flat, index) => (
-        <Flex width='320px' mx={1}>
+        <Flex width='320px' my={0}>
           <Flat key={index} {...flat} route='flats' />
         </Flex>
       ))}
