@@ -41,7 +41,7 @@ export default props => {
     title,
     town,
     nightPrice,
-    picture,
+    picture: 'https://etherbnb.herokuapp.com/img/flats/11.jpg',
     description,
     guests,
     bedrooms,
@@ -121,7 +121,8 @@ export default props => {
           />
         </Field>
       </Flex>
-      <Field label='Picture' width={1}>
+      {/*
+        <Field label='Picture' width={1}>
         {picture ? (
           <Image
             maxWidth='300px'
@@ -144,6 +145,7 @@ export default props => {
           }}
         />
       </Field>
+      */}
       <Field label='Description' width={1}>
         <textarea
           rows={4}

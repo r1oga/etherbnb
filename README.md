@@ -1,8 +1,11 @@
 # Rbnb
 Replica of Airbnb on web3.
+# [Check Live](https://etherbnb.herokuapp.com) (work in progress development version)
 ## To dos
 - [x] web2 version
-- [x] Postgres backend
+- [x] Local Postgres backend
+- [x] Deploy online
+- [ ] Store static assets (flat picture on) outside heroku dyno (e.g AWS S3)
 - [x] Server Side Rendered front end with nextjs
 - [x] Authentication with username and password (passport.js)
 - [x] Session stored in cookie
