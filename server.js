@@ -16,7 +16,7 @@ const sequelize = require('./db')
 const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const sessionStore = new SequelizeStore({ db: sequelize })
-// sessionStore.sync() // create sessions table first time app is run, comment out after
+sessionStore.sync() // create sessions table first time app is run, comment out after
 
 // keep DB in sync in case with change the models
 User.sync({ alter: true })

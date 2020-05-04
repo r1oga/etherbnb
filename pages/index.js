@@ -19,7 +19,7 @@ const Index = ({ flats }) => (
 )
 
 Index.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/flats')
+  const res = await fetch(`http://localhost:${process.env.PORT}/api/flats`)
   const flats = await res.json()
   return { flats }
 }

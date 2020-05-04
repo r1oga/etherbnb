@@ -1,9 +1,11 @@
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize('rbnb', 'r1oga', 'r1oga', {
-  host: 'localhost',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
-  logging: false
+  dialectOptions: {
+    ssl: true,
+    rejectUnauthorized: false
+  }
 })
 
 module.exports = sequelize
