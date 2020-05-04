@@ -32,7 +32,7 @@ const Host = ({ flats, bookings }) => {
 Host.getInitialProps = async ctx => {
   const { data: { flats, bookings } } = await axios({
     method: 'get',
-    url: 'http://localhost:3000/api/host/list',
+    url: `http://localhost:${process.env.PORT}/api/host/list`,
     headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
   })
 

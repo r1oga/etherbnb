@@ -140,7 +140,7 @@ export default props => {
             const formData = new FormData()
             formData.append('image', files[0])
             const response = await axios.post('/api/host/image', formData)
-            setPicture(`http://localhost:3000${response.data.path}`)
+            setPicture(`https://etherbnb.herokuapp.com${response.data.path}`)
           }}
         />
       </Field>

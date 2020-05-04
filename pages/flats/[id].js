@@ -14,7 +14,7 @@ import DateRangePicker from '../../components/DateRangePicker'
 const getBookedDates = async flatId => {
   try {
     const response = await axios.post(
-      'http://localhost:3000/api/flats/booked',
+      `http://localhost:${process.env.PORT}/api/flats/booked`,
       { flatId }
     )
 
@@ -40,7 +40,7 @@ const Flat = ({ flat }) => {
   const canBook = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/flats/check',
+        `http://localhost:${process.env.PORT}/api/flats/check`,
         { flatId: flat.id, startDate, endDate }
       )
       if (response.data.message === 'unavailable') return false
@@ -59,7 +59,7 @@ const Flat = ({ flat }) => {
     try {
       // const payload = { flatId: flat.id, startDate, endDate }
       const response = await axios.post(
-        'http://localhost:3000/api/flats/book',
+        `http://localhost:${process.env.PORT}/api/flats/book`,
         { flatId: flat.id, startDate, endDate }
       )
       if (response.data.status === 'error') {
@@ -129,7 +129,7 @@ const Flat = ({ flat }) => {
 }
 
 Flat.getInitialProps = async ({ query: { id } }) => {
-  const res = await fetch(`http://localhost:3000/api/flats/${id}`)
+  const res = await fetch(`http://localhost:${process.env.PORT}/api/flats/${id}`)
   const flat = await res.json()
   const bookedDates = await getBookedDates(id)
   flat.bookedDates = bookedDates
