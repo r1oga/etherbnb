@@ -73,7 +73,7 @@ const Flat = ({ flat }) => {
 
   return (
     <Layout>
-      <Flex justifyContent='space-around'>
+      <Flex justifyContent='space-evenly'>
         <Head>
           <title>{flat.title}</title>
         </Head>
