@@ -1,16 +1,21 @@
 # Rbnb
 Replica of Airbnb on web3.
+## [Check Live](https://etherbnb.herokuapp.com) (work in progress development version)
 ## To dos
 - [x] web2 version
-- [x] Postgres backend
+- [x] Local Postgres backend
+- [x] Deploy online
+- [ ] Store static assets (flat picture on) outside heroku dyno (e.g AWS S3)
 - [x] Server Side Rendered front end with nextjs
 - [x] Authentication with username and password (passport.js)
 - [x] Session stored in cookie
 - [ ] web 2 -> web3
-- [ ] write Ethereum smart contracts
-- [ ] modify models: e.g user to include public address
-- [ ] modify authentication: with metamask?
-- [ ] modify backend/data persistence: IPFS ?
+  - [ ] Update dependencies: web3-react for web provider, easy-peasy for state management,
+  rimble ui for components, connectors (portis, link wallet)
+  - [ ] write Ethereum smart contracts
+  - [ ] modify models: e.g user to include public address
+  - [ ] modify authentication: with metamask?
+  - [ ] modify backend/data persistence: IPFS ?
 
 ## Getting started
 1. Download/clone repository
