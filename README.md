@@ -1,5 +1,5 @@
-# Rbnb
-Replica of Airbnb on web3.
+# Etherbnb
+Replica of Airbnb on Ethereum.
 ## [Check Live](https://etherbnb.herokuapp.com) (work in progress development version)
 ## To dos
 - [x] web2 version
@@ -16,6 +16,9 @@ Replica of Airbnb on web3.
   - [ ] modify models: e.g user to include public address
   - [ ] modify authentication: with metamask?
   - [ ] modify backend/data persistence: IPFS ?
+
+## Smart Contract Architecture
+![Smart Contract Architecture](./smart-contracts/contractsArchitecture.png)
 
 ## Getting started
 1. Download/clone repository
