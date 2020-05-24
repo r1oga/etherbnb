@@ -14,5 +14,9 @@
   "scripts": {
     "build": "waffle",
     "test": "mocha"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.0.1",
+    "ethers": "^4.0.47"
   }
 }
