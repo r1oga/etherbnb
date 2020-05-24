@@ -1,12 +1,14 @@
-const { use, expect } = require('chai')
+const { use, expect, assert } = require('chai')
 const { solidity, MockProvider, getWallets, deployContract } = require('ethereum-waffle')
 const { utils } = require('ethers')
 const Test = require('../build/Etherbnb.json')
 const flats = require('../../front-end/pages/flats.json')
 const crypto = require('crypto')
+const IPFS = require('ipfs')
+const all = require('it-all')
 
 const hash = crypto.createHash('sha256')
-const flatString = JSON.stringify(flats[0])
+const flat = JSON.stringify(flats[0])
 
 use(solidity)
 
@@ -22,11 +24,16 @@ describe('Test Etherbnb factory contract', () => {
   })
 
   it('can add a flat to the flat mapping', async () => {
+    const node = await IPFS.create()
+    const asyncIterable = await node.add(flat)
+    const { value: { path } } = await asyncIterable.next()
+    expect(path).to.exist
+    assert.isString(path)
+
     const test = await deploy()
-    hash.update(flatString)
-    const flatHash = hash.digest('hex')
-    await test.addFlat(flatHash)
-    const flatOwner = await test.getOwner(flatHash)
+    await test.addFlat(path)
+    const flatOwner = await test.getOwner(path)
     expect(flatOwner).to.equal(wallet.address)
+    node.stop()
   })
 })

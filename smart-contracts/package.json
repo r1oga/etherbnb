@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^3.0.1",
-    "ethers": "^4.0.47"
+    "ethers": "^4.0.47",
+    "ipfs": "^0.44.0"
   }
 }
