@@ -53,6 +53,10 @@ describe('Test Etherbnb factory contract', () => {
 
     const flatContract = new ethers.Contract(address, Flat.abi, provider)
 
+    // state var id is instantiated to CID of flat added to IPFS
     expect(await flatContract.id()).to.equal(path)
+
+    // owner of the Flat contract is the account which called addFlat()
+    expect(await flatContract.owner()).to.equal(wallet.address)
   })
 })

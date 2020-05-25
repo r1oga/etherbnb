@@ -10,7 +10,7 @@ contract Etherbnb is Ownable {
     event FlatAdded(string hash, address flat);
 
     function addFlat(string memory _hash) public {
-        Flat newFlat = new Flat(_hash);
+        Flat newFlat = new Flat(_hash, msg.sender);
         flats[_hash] = address(newFlat);
         emit FlatAdded(_hash, address(newFlat));
     }
