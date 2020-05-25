@@ -1,7 +1,8 @@
 const { use, expect, assert } = require('chai')
 const { solidity, MockProvider, getWallets, deployContract } = require('ethereum-waffle')
-const { utils } = require('ethers')
+const ethers = require('ethers')
 const Etherbnb = require('../build/Etherbnb.json')
+const Flat = require('../build/Flat.json')
 const flats = require('../../front-end/pages/flats.json')
 const crypto = require('crypto')
 const IPFS = require('ipfs')
@@ -9,6 +10,7 @@ const all = require('it-all')
 
 const hash = crypto.createHash('sha256')
 const flat = JSON.stringify(flats[0])
+const provider = ethers.getDefaultProvider()
 
 use(solidity)
 
@@ -25,7 +27,7 @@ describe('Test Etherbnb factory contract', () => {
     return expect(await factory.owner()).to.equal(wallet.address)
   })
 
-  it('can add a flat to the flat mapping', async () => {
+  it('addFlat(): adds flat to mapping', async () => {
     const node = await IPFS.create()
     const asyncIterable = await node.add(flat)
     const { value: { path } } = await asyncIterable.next()
@@ -38,5 +40,19 @@ describe('Test Etherbnb factory contract', () => {
 
     expect(hash).to.equal(path)
     expect(await factory.getFlatAddress(path)).to.equal(flatAddress)
+    node.stop()
+  })
+
+  it('addFLat: instantiates a Flat contract with its IPFS CID as id', async () => {
+    const node = await IPFS.create()
+    const asyncIterable = await node.add('test')
+    const { value: { path } } = await asyncIterable.next()
+
+    await factory.addFlat(path)
+    const address = await factory.getFlatAddress(path)
+
+    const flatContract = new ethers.Contract(address, Flat.abi, provider)
+
+    expect(await flatContract.id()).to.equal(path)
   })
 })
