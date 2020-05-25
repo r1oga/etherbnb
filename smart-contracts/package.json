@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "waffle",
-    "test": "mocha"
+    "test": "mocha --exit"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^3.0.1",

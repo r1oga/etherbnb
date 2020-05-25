@@ -1,16 +1,25 @@
 pragma solidity ^0.6;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./Flat.sol";
 
 
 contract Etherbnb is Ownable {
-    mapping (string => address payable) public flats; // hash => owner
+    mapping (string => address) public flats; // hash => owner
 
-    function addFlat(string memory _hash) public returns (string memory) {
-        flats[_hash] = msg.sender;
+    event FlatAdded(string hash, address flat);
+
+    function addFlat(string memory _hash) public {
+        Flat newFlat = new Flat(_hash);
+        flats[_hash] = address(newFlat);
+        emit FlatAdded(_hash, address(newFlat));
     }
 
-    function getOwner(string memory _flat) public view returns (address payable) {
-        return flats[_flat];
+    function getFlatAddress(string memory _flatHash)
+    public
+    view
+    returns (address)
+    {
+        return flats[_flatHash];
     }
 }
