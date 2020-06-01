@@ -8,6 +8,7 @@ const crypto = require('crypto')
 const IPFS = require('ipfs')
 const all = require('it-all')
 
+const { status, ratings } = require('../../lib/constants')
 const hash = crypto.createHash('sha256')
 const flat = JSON.stringify(flats[0])
 
@@ -16,7 +17,6 @@ const provider = new MockProvider()
 const [wallet] = provider.getWallets()
 let node
 let factory
-
 describe('Test Etherbnb factory contract', () => {
   before(async () => {
     node = await IPFS.create()
@@ -59,19 +59,35 @@ describe('Test Etherbnb factory contract', () => {
 })
 
 describe('Test Flat contract', () => {
-  after(() => {
-    node.stop()
-  })
-
-  it('Can generate the hash key of a Stay', async () => {
+  let flatContract
+  before(async () => {
     // Instantiate Flat Contract using its CID path
     const asyncIterable = await node.add('test2')
     const { value: { path } } = await asyncIterable.next()
     await factory.addFlat(path)
     const address = await factory.getFlatAddress(path)
-    const flatContract = new ethers.Contract(address, Flat.abi, provider)
+    flatContract = new ethers.Contract(address, Flat.abi, provider.getSigner(0))
+  })
+
+  after(() => {
+    node.stop()
+  })
+
+  it('Can generate the hash key of a Stay', async () => {
     const now = Date.now()
     const hash = await flatContract.getStayKey(wallet.address, now)
     expect(hash).to.be.string
+  })
+
+  it('Can book a Stay', async () => {
+    const start = Date.now()
+    const end = start + 10000
+    const tx = await flatContract.bookStay(start, end)
+    await tx.wait(1)
+
+    const stay = await flatContract.getStay(wallet.address, start)
+    expect(status[stay.status]).to.equal('booked')
+    expect(+stay.endDate).to.equal(end)
+    expect(ratings[stay.rating]).to.equal('undefined')
   })
 })
