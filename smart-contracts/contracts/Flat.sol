@@ -24,13 +24,22 @@ contract Flat is Ownable {
         transferOwnership(_host);
     }
 
-    // function getStayKey(address guest, uint startDate)
-    // internal
-    // pure
-    // returns (bytes32 memory)
-    // {
-    //
-    // }
+    function getStayKey(address _guest, uint _startDate)
+    public
+    pure
+    returns (bytes32)
+    {
+        return _getStayKey(_guest, _startDate);
+    }
+
+    function _getStayKey(address _guest, uint _startDate)
+    internal
+    pure
+    returns (bytes32)
+    {
+        return keccak256(abi.encodePacked(_guest, _startDate));
+    }
+
     //
     // function bookStay(uint _startDate, uint _endDate) public {
     //

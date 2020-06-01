@@ -10,16 +10,16 @@ const all = require('it-all')
 
 const hash = crypto.createHash('sha256')
 const flat = JSON.stringify(flats[0])
-const provider = ethers.getDefaultProvider()
 
 use(solidity)
+const provider = new MockProvider()
+const [wallet] = provider.getWallets()
+let node
+let factory
 
 describe('Test Etherbnb factory contract', () => {
-  const provider = new MockProvider()
-  const [wallet] = provider.getWallets()
-
-  let factory
-  beforeEach(async () => {
+  before(async () => {
+    node = await IPFS.create()
     factory = await deployContract(wallet, Etherbnb)
   })
 
@@ -28,7 +28,6 @@ describe('Test Etherbnb factory contract', () => {
   })
 
   it('addFlat(): adds flat to mapping', async () => {
-    const node = await IPFS.create()
     const asyncIterable = await node.add(flat)
     const { value: { path } } = await asyncIterable.next()
     expect(path).to.exist
@@ -40,11 +39,9 @@ describe('Test Etherbnb factory contract', () => {
 
     expect(hash).to.equal(path)
     expect(await factory.getFlatAddress(path)).to.equal(flatAddress)
-    node.stop()
   })
 
-  it('addFLat: instantiates a Flat contract with its IPFS CID as id', async () => {
-    const node = await IPFS.create()
+  it('addFLat(): instantiates a Flat contract with its IPFS CID as id', async () => {
     const asyncIterable = await node.add('test')
     const { value: { path } } = await asyncIterable.next()
 
@@ -58,5 +55,23 @@ describe('Test Etherbnb factory contract', () => {
 
     // owner of the Flat contract is the account which called addFlat()
     expect(await flatContract.owner()).to.equal(wallet.address)
+  })
+})
+
+describe('Test Flat contract', () => {
+  after(() => {
+    node.stop()
+  })
+
+  it('Can generate the hash key of a Stay', async () => {
+    // Instantiate Flat Contract using its CID path
+    const asyncIterable = await node.add('test2')
+    const { value: { path } } = await asyncIterable.next()
+    await factory.addFlat(path)
+    const address = await factory.getFlatAddress(path)
+    const flatContract = new ethers.Contract(address, Flat.abi, provider)
+    const now = Date.now()
+    const hash = await flatContract.getStayKey(wallet.address, now)
+    expect(hash).to.be.string
   })
 })
