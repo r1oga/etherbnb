@@ -80,14 +80,22 @@ describe('Test Flat contract', () => {
   })
 
   it('Can book a Stay', async () => {
-    const start = Date.now()
-    const end = start + 10000
-    const tx = await flatContract.bookStay(start, end)
-    await tx.wait(1)
+    const startDate = Date.now()
+    const endDate = startDate + 10000
+    const tx = await flatContract.bookStay(startDate, endDate)
+    const receipt = await tx.wait(1)
+    const { args: { guest, start, end } } = receipt.events.pop()
 
-    const stay = await flatContract.getStay(wallet.address, start)
+    // Test event emission
+    expect(guest).to.equal(wallet.address)
+    expect(start).to.equal(startDate)
+    expect(end).to.equal(endDate)
+
+    // Test state
+    const stay = await flatContract.getStay(wallet.address, startDate)
     expect(status[stay.status]).to.equal('booked')
-    expect(+stay.endDate).to.equal(end)
+    expect(+stay.end).to.equal(endDate)
     expect(ratings[stay.rating]).to.equal('undefined')
+    // expect(stay.endDate).to.equal(end)
   })
 })

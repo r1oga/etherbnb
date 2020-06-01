@@ -10,8 +10,8 @@ contract Flat is Ownable {
     enum Ratings { undefined, bad, ok, good }
 
     struct Stay {
-        uint startDate;
-        uint endDate;
+        uint start;
+        uint end;
         uint index;
         address guest;
         Ratings rating;
@@ -22,6 +22,8 @@ contract Flat is Ownable {
     bytes32[] internal stayKeys;
 
     // EVENTS
+    event StayBooked(address guest, uint start, uint end);
+
     // CONSTRUCTOR
     constructor (string memory _id, address _host) public {
         id = _id;
@@ -30,52 +32,54 @@ contract Flat is Ownable {
 
     // MODIFIERS
     // FUNCTIONS
-    function getStayKey(address _guest, uint _startDate)
+    function getStayKey(address _guest, uint _start)
     public
     pure
     returns (bytes32)
     {
-        return _getStayKey(_guest, _startDate);
+        return _getStayKey(_guest, _start);
     }
 
-    function bookStay(uint startDate, uint endDate) public {
+    function bookStay(uint start, uint end) public {
         // Generate Key
-        bytes32 hash = getStayKey(msg.sender, startDate);
+        bytes32 hash = getStayKey(msg.sender, start);
 
         // Store stay
-        stays[hash].startDate = startDate;
-        stays[hash].endDate = endDate;
+        stays[hash].start = start;
+        stays[hash].end = end;
         stays[hash].index = stayKeys.length;
         stays[hash].guest = msg.sender;
         stays[hash].status = StayStatus.booked;
+
+        emit StayBooked(msg.sender, start, end);
     }
 
-    function getStay(address _guest, uint _startDate)
+    function getStay(address _guest, uint _start)
     public
     view
     returns
     (
-        uint endDate,
+        uint end,
         StayStatus status,
         Ratings rating
     )
     {
-        bytes32 hash = getStayKey(_guest, _startDate);
-        endDate = stays[hash].endDate;
+        bytes32 hash = getStayKey(_guest, _start);
+        end = stays[hash].end;
         rating = stays[hash].rating;
         status = stays[hash].status;
     }
 
-    function _getStayKey(address _guest, uint _startDate)
+    function _getStayKey(address _guest, uint _start)
     internal
     pure
     returns (bytes32)
     {
-        return keccak256(abi.encodePacked(_guest, _startDate));
+        return keccak256(abi.encodePacked(_guest, _start));
     }
 
     // CORE FUNCTIONS
-    // function cancelStay(uint _startDate) public {
+    // function cancelStay(uint _start) public {
     //
     // }
     //
