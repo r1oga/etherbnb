@@ -28,7 +28,7 @@ contract Flat is Ownable {
     // EVENTS
     event StayBooked(address guest, uint start, uint end);
     event StayUpdated(address guest, uint start, uint end, Rating rating, Status status);
-    event StayCancelled(address guest, uint start, uint end);
+    event StayCancelled(address guest, uint start);
 
     // CONSTRUCTOR
     constructor (string memory _id, address _host) public {
@@ -74,7 +74,9 @@ contract Flat is Ownable {
         Rating rating
     )
     {
+        // Get key
         bytes32 key = getStayKey(_guest, _start);
+        // Check that stay exists
         require(staysSet.exists(key), "No stay exists for this guest & starting date pair");
 
         Stay storage s = stays[key];
@@ -85,34 +87,27 @@ contract Flat is Ownable {
         status = s.status;
     }
 
-    // function cancelStay(uint _start)
-    // public
-    // {
-    //     // get Stay's key
-    //     bytes32 key = getStayKey(msg.sender, _start);
-    //
-    //     // check that caller has booked this stay
-    //     address guest = stays[key].guest;
-    //     require(guest == msg.sender, "Only the person who booked a Stay can cancel it");
-    //
-    //     // check that the start date is in more than 7 days
-    //     uint seven = 7;
-    //     require(now.add(seven.mul(1 days)) <= _start, "This Stay starts in less than 7 days: too late to cancel it");
-    //
-    //     // get index of Stay to delete
-    //     uint indexStayToDelete = stays[key].index;
-    //
-    //     // Replace stay to be deleted with last stay in the array
-    //     // Get key of stay in last position of the keys array
-    //     bytes32 fillStayHash = stayKeys[stayKeys.length.sub(1)];
-    //     // Update key at indexStayToDelete in keys array
-    //     stayKeys[indexStayToDelete] = fillStayHash;
-    //     // Set fillStay index to index of Stay to delete
-    //     stays[fillStayHash].index = indexStayToDelete;
-    //     // Reduce length of keys array
-    //     // set key to null in mapping
-    //
-    // }
+    function cancelStay(address guest, uint start)
+    public
+    {
+        // Get key
+        bytes32 key = getStayKey(guest, start);
+        // Check that stay exists
+        require(staysSet.exists(key), "No stay exists for this guest & starting date pair");
+
+        // Only guest or owner can cancel a stay
+        require(
+            msg.sender == guest || msg.sender == owner(),
+            "Only the flat owner or the guest who booked a stay can cancel it");
+
+        // check that the start date is in more than 7 days
+        uint seven = 7;
+        require(now.add(seven.mul(1 days)) <= start, "This stay starts in less than 7 days: too late to cancel it");
+
+        staysSet.remove(key);
+        emit StayCancelled(guest, start);
+
+    }
 
     function _getStayKey(address _guest, uint _start)
     internal
