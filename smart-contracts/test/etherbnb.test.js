@@ -93,9 +93,10 @@ describe('Test Flat contract', () => {
 
     // Test state
     const stay = await flatContract.getStay(wallet.address, startDate)
-    expect(status[stay.status]).to.equal('booked')
+    expect(stay.guest).to.equal(wallet.address)
+    expect(+stay.start).to.equal(startDate)
     expect(+stay.end).to.equal(endDate)
+    expect(status[stay.status]).to.equal('booked')
     expect(ratings[stay.rating]).to.equal('undefined')
-    // expect(stay.endDate).to.equal(end)
   })
 })
